@@ -112,30 +112,22 @@ chmod +x /path/to/zotero-digest/zotero_digest.sh
 crontab -e
 ```
 
-### 3. Add cron entry
-```bash
-# Zotero Daily Digest - weekdays at 9 AM
-0 9 * * 1-5 /path/to/zotero-digest/zotero_digest.sh >> /path/to/zotero-digest/cron.log 2>&1
-```
-
-**Note**: The shell script automatically sources `~/.bashrc` to access your `ZOTERO_API_KEY` and `SLACK_WEBHOOK_URL` environment variables.
-
-### Alternative: Set variables directly in crontab
-If you prefer not to rely on shell profile loading:
+### 3. Add cron entry with environment variables
 ```bash
 # In crontab -e:
 ZOTERO_API_KEY=your-api-key-here
 SLACK_WEBHOOK_URL=your-webhook-url-here
+# Zotero Daily Digest - weekdays at 9 AM
 0 9 * * 1-5 /path/to/zotero-digest/zotero_digest.sh >> /path/to/zotero-digest/cron.log 2>&1
 ```
 
 ## Environment Variables Reference
 
 ### Required
-- `ZOTERO_API_KEY`: Your Zotero API key (set in shell profile)
+- `ZOTERO_API_KEY`: Your Zotero API key (set in crontab or shell profile)
 
 ### Optional
-- `SLACK_WEBHOOK_URL`: Slack webhook URL for notifications (set in shell profile)
+- `SLACK_WEBHOOK_URL`: Slack webhook URL for notifications (set in crontab or shell profile)
 - `LIBRARY_TYPE`: "users" or "groups" (default: "users")
 - `LIBRARY_ID`: Numeric library/group ID (auto-detected if not set)
 - `GROUP_NAME`: Group name for auto-discovery (groups only)
