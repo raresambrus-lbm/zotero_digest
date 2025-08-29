@@ -6,5 +6,5 @@ set -a  # automatically export all variables
 source zotero_digest.env
 set +a
 
-cd /home/raresambrus/code/apps/zotero
+cd ~/code/apps/zotero_digest
 python3 zotero_app.py
